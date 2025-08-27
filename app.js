@@ -28,7 +28,10 @@ const listingRouter = require("./routes/listing.js");
   const userRouter = require("./routes/user.js");
 
 
- const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+    
+let  dbUrl = process.env.DBLAST_URL ;
+
    
 
 
@@ -50,7 +53,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 };
 
 app.set("view engine", "ejs");
@@ -65,7 +68,7 @@ app.use(express.static(`public`));
 
 
   const store = MongoStore.create({
-      mongoUrl : MONGO_URL,
+      mongoUrl : dbUrl,
       crypto: {
         secret: process.env.SECRET,
       },
@@ -99,16 +102,15 @@ cookie: {
 
     app.use(passport.initialize());
     app.use(passport.session());
+    
+   
+
     passport.use(new LocalStrategy(User.authenticate()));
 
 
     passport.serializeUser(User.serializeUser());
     passport.deserializeUser(User.deserializeUser());
   
-    app.use((req,res,next) => {
-  res.locals.currUser = req.user;
-  next();
-});
 
 app.use((req , res , next) => {
   res.locals.success = req.flash("success");
@@ -116,6 +118,8 @@ app.use((req , res , next) => {
   res.locals.currUser = req.user;
   next();
 });
+
+
 
 
 //app.get("/demouser" ,async (req , res) => {
