@@ -164,8 +164,8 @@ app.use("/" , userRouter)
     //res.render("error.ejs");
     //res.status(statusCode).send(message);
  });
- 
+  const port = process.env.PORT || 4000;
 
-app.listen(4000, () => {
-  console.log(`server is listening to port 4000`);
+app.listen(port, () => {
+  console.log(`server is listening to port 4000 ${port}`);
 });
