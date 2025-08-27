@@ -28,8 +28,7 @@ const listingRouter = require("./routes/listing.js");
   const userRouter = require("./routes/user.js");
 
 
-//const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-const dbUrl = process.env.ATLASDB_URL;
+ const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
    
 
 
@@ -51,7 +50,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(MONGO_URL);
 };
 
 app.set("view engine", "ejs");
@@ -66,7 +65,7 @@ app.use(express.static(`public`));
 
 
   const store = MongoStore.create({
-      mongoUrl : dbUrl,
+      mongoUrl : MONGO_URL,
       crypto: {
         secret: process.env.SECRET,
       },
@@ -159,6 +158,6 @@ app.use("/" , userRouter)
  });
  
 
-app.listen(8080, () => {
-  console.log(`server is listening to port 8080`);
+app.listen(4000, () => {
+  console.log(`server is listening to port 4000`);
 });
