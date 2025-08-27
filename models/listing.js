@@ -29,7 +29,7 @@ const listingSchema = new Schema({
     },
   ],
   owner : {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref:"User" , 
   },
   
