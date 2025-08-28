@@ -134,9 +134,9 @@ app.use("/listings/:id/reviews" , reviewRouter);
 app.use("/" , userRouter)
 
 
-app.get("/" , (req , res) => {
-  res.send("appdeployed");
-});
+//app.get("/" , (req , res) => {
+  //res.send("appdeployed");
+//});
 
 
 
