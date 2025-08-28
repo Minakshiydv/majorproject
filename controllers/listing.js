@@ -25,10 +25,11 @@ module.exports.showListing= async (req, res) => {
 module.exports.createListing =    async(req, res , next) => {
    const newListing = new Listing(req.body.listing);
       newListing.owner = req.user._id;
+      console.log("user in create listing" , req.user);
        await newListing.save();
        console.log(req.body);
        req.flash("success" , "New Listing Created!");
-  res.redirect("/listings");
+  res.redirect(`/listings ${newListing._id}`);
   };
 
 

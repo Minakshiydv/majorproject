@@ -102,8 +102,6 @@ cookie: {
 
     app.use(passport.initialize());
     app.use(passport.session());
-    
-   
 
     passport.use(new LocalStrategy(User.authenticate()));
 
@@ -137,7 +135,7 @@ app.use("/" , userRouter)
 
 
 app.get("/" , (req , res) => {
-  res.send("app deployed.fdgfhjiusejhkfu");
+  res.send("appdeployed");
 });
 
 
