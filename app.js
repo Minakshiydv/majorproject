@@ -136,8 +136,12 @@ app.use("/" , userRouter)
 
 //app.get("/" , (req , res) => {
   //res.send("appdeployed");
+//
 //});
-
+app.get("/", async (req, res) => {
+  const listings = await Listing.find({});
+  res.render("listings/index", { listings });
+});
 
 
 
